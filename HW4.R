@@ -46,4 +46,62 @@ summOut
 #To read this output, you will be looking for asterisks(*). For example,
 #according to this output, the best singular variable to predict sleep duration
 #is quality of sleep. The best two variables combined to predict sleep duration
+# are Occupation Doctor and Quality of Sleep. 
+
+
+
+
+#Part 3 - Take the code from second person (which should already include 
+#person's 1), and output the plot that will help to determine #the best model 
+#among all best models (AIC vs p) plot. Determine which model is the best model. 
+#List the variables in this best model
+
+
+n1 <- length(Sleep.Duration)
+n1
+
+p1 <- apply(summOut$which, 1, sum)
+
+summOut$which
+
+p1
+#This shows us how many trues each variable has in a numeric form, and the models
+#also include the intercept. 
+
+aic1 <- summOut$bic - log(n1) * p1 + 2 * p1
+
+plot(p1, aic1, ylab = "AIC1")
+#based on the plotted data, it helps us determine the best model out of all
+#the models which includes all 12 predictors because the lowest dot is 12.  
+
+summOut
+#We are re-running summOut to find the 12 variables that also has the lowest AIC
+model1 <- lm(Sleep.Duration ~ Gender + Age + Occupation+ Quality.of.Sleep + 
+               Physical.Activity.Level + Stress.Level + BMI.Category + 
+               Heart.Rate+ Daily.Steps + Sleep.Disorder + Systolic + 
+               Diastolic, data=SleepHealth)
+
+summary(model1)
+
+table(Occupation)
+#Occupation Accountant is used as a benchmark as a reference level. 
+#The variables of significant importance for occupations are: Doctor, Engineer,
+#Lawyer, Nurse, Sales Representative, Salesperson, Scientist, Software Engineer, 
+# and Teacher.  
+
+
+
+table(BMI.Category)
+#Normal category is used as a benchmark as a reference level.
+#The variables of significant importance fof BMI Category are: Obese and Overweight. 
+
+table(Sleep.Disorder)
+#Insomnia category is used as a benchmark as a reference level. 
+#The variables mentioned are categorical based on the indication of the variable 
+#name which are Sleep.DisorderNone and Sleep.DisorderSleep Apnea. 
+
+
+categorical tricky becase we have to write more, 
+
+
 
