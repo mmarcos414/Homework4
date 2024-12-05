@@ -83,7 +83,7 @@ model1 <- lm(Sleep.Duration ~ Gender + Age + Occupation+ Quality.of.Sleep +
 
 summary(model1)
 
-#Reviewing Occupations categoires 
+#Reviewing Occupations categoires
 
 table(Occupation)
 
